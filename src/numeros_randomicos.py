@@ -11,9 +11,14 @@ metodoJson = {
 def gerarRandomicoUniforme(valorMenor=0, valorMaior=1):
     return valorMenor + (valorMaior - valorMenor)*random.random()
 
-
-def gerarRandomicoTriangular(valorMenor=0, valorMaior=1):
-    return 0
+# Slide professor.
+def gerarRandomicoTriangular(valorMenor=0, valorMaior=1, moda= 0.5):
+    U = random.random()
+    if (U < (moda-valorMenor)/(valorMaior-valorMenor)):
+        return valorMenor + (U*(moda-valorMenor)*(valorMaior-valorMenor)) ** 0.5
+    else: 
+        return valorMaior - ((1-U)*(valorMaior-moda)*(valorMaior-valorMenor)) ** 0.5
+        
 
 
 def gerarRandomicoEsponencial(valorMenor=0, valorMaior=1):
@@ -24,7 +29,7 @@ def gerarRandomicoNatural(valorMenor=0, valorMaior=1):
     return 2
 
 
-def gerarNumerosRandomicos(qtde=10, metodo=1, valorMenor=0, valorMaior=1):
+def gerarNumerosRandomicos(qtde=10, metodo=1, valorMenor=0, valorMaior=1, moda=0.5):
     numerosAleatorios = []
     if metodoJson[metodo] == 'uniforme':
         for _ in range(qtde):
@@ -33,7 +38,7 @@ def gerarNumerosRandomicos(qtde=10, metodo=1, valorMenor=0, valorMaior=1):
     if metodoJson[metodo] == 'triangular':
         for _ in range(qtde):
             numerosAleatorios.append(
-                gerarRandomicoTriangular(valorMenor, valorMaior))
+                gerarRandomicoTriangular(valorMenor, valorMaior, moda))
     if metodoJson[metodo] == 'esponencial':
         for _ in range(qtde):
             numerosAleatorios.append(
@@ -44,6 +49,9 @@ def gerarNumerosRandomicos(qtde=10, metodo=1, valorMenor=0, valorMaior=1):
                 gerarRandomicoNatural(valorMenor, valorMaior))
     return numerosAleatorios
     
-numerosAleatorios = gerarNumerosRandomicos(15, 1, 2 , 5)
+numerosAleatorios = gerarNumerosRandomicos(50, 2, 1 , 100, 8)
+acc = 0
 for i in range(len(numerosAleatorios)):
+    acc += numerosAleatorios[i]
     print('numero',i+1, ':', numerosAleatorios[i])
+print ('Valor medio : ', acc/len(numerosAleatorios))
