@@ -1,9 +1,9 @@
 import random
-# Criar métodos de geração de números aleatórios como Uniforme, triangular, esponencial e natural.
+# Criar métodos de geração de números aleatórios como Uniforme, triangular, exponencial e natural.
 metodoJson = {
     1: "uniforme",
     2: "triangular",
-    3: "esponencial",
+    3: "exponencial",
     4: "natural"
 }
 
@@ -20,8 +20,9 @@ def gerarRandomicoTriangular(valorMenor=0, valorMaior=1, moda= 0.5):
         return valorMaior - ((1-U)*(valorMaior-moda)*(valorMaior-valorMenor)) ** 0.5
         
 
-
-def gerarRandomicoEsponencial(valorMenor=0, valorMaior=1):
+def gerarRandomicoExponencial(limiteInferior=0, media=5):
+    # calcular alfa - depois calcular o valor.
+    # http://mpsantos.com.br/simul.pdf - Página 66 e 67
     return 1
 
 
@@ -39,10 +40,10 @@ def gerarNumerosRandomicos(qtde=10, metodo=1, valorMenor=0, valorMaior=1, moda=0
         for _ in range(qtde):
             numerosAleatorios.append(
                 gerarRandomicoTriangular(valorMenor, valorMaior, moda))
-    if metodoJson[metodo] == 'esponencial':
+    if metodoJson[metodo] == 'exponencial':
         for _ in range(qtde):
             numerosAleatorios.append(
-                gerarRandomicoEsponencial(valorMenor, valorMaior))
+                gerarRandomicoExponencial(valorMenor, valorMaior))
     if metodoJson[metodo] == 'natural':
         for _ in range(qtde):
             numerosAleatorios.append(
