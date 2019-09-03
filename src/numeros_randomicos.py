@@ -25,7 +25,7 @@ def gerarRandomicoTriangular(valorMenor=0, valorMaior=1, moda= 0.5):
 def gerarRandomicoExponencial(limiteInferior=0, media=5):
     # http://mpsantos.com.br/simul.pdf - Página 66 e 67
     U = random.random()
-    alpha = 1 / (media - limiteInferior)  # todo decobrir valor verdadeiro
+    alpha = 1 / (media - limiteInferior)
     x = limiteInferior - (1 / alpha) * math.log(U)
     return x
 
