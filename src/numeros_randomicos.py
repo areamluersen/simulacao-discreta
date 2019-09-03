@@ -1,5 +1,7 @@
 import random
 # Criar métodos de geração de números aleatórios como Uniforme, triangular, exponencial e natural.
+import math
+
 metodoJson = {
     1: "uniforme",
     2: "triangular",
@@ -21,12 +23,16 @@ def gerarRandomicoTriangular(valorMenor=0, valorMaior=1, moda= 0.5):
         
 
 def gerarRandomicoExponencial(limiteInferior=0, media=5):
-    # calcular alfa - depois calcular o valor.
     # http://mpsantos.com.br/simul.pdf - Página 66 e 67
-    return 1
+    U = random.random()
+    alpha = 1 / (media - limiteInferior)  # todo decobrir valor verdadeiro
+    x = limiteInferior - (1 / alpha) * math.log(U)
+    return x
 
 
 def gerarRandomicoNatural(valorMenor=0, valorMaior=1):
+    # unica referencia nas primeiras pesquisas no google
+    # https://math.stackexchange.com/questions/1079904/natural-number-generator
     return 2
 
 
