@@ -18,9 +18,9 @@ def gerarRandomicoTriangular(valorMenor=0, valorMaior=1, moda= 0.5):
     U = random.random()
     if (U < (moda-valorMenor)/(valorMaior-valorMenor)):
         return valorMenor + (U*(moda-valorMenor)*(valorMaior-valorMenor)) ** 0.5
-    else: 
+    else:
         return valorMaior - ((1-U)*(valorMaior-moda)*(valorMaior-valorMenor)) ** 0.5
-        
+
 
 def gerarRandomicoExponencial(limiteInferior=0, media=5):
     # http://mpsantos.com.br/simul.pdf - Página 66 e 67
@@ -30,13 +30,15 @@ def gerarRandomicoExponencial(limiteInferior=0, media=5):
     return x
 
 
-def gerarRandomicoNatural(valorMenor=0, valorMaior=1):
-    # unica referencia nas primeiras pesquisas no google
-    # https://math.stackexchange.com/questions/1079904/natural-number-generator
-    return 2
+def gerarRandomicoNatural(media=5, variancia=1):
+    U1 = random.random()
+    U2 = random.random()
+    Z = math.sqrt(-2 * math.log(U1)) * math.sin(2 * math.pi * U2)
+    X = media + variancia * Z
+    return X
 
 
-def gerarNumerosRandomicos(qtde=10, metodo=1, valorMenor=0, valorMaior=1, moda=0.5):
+def gerarNumerosRandomicos(qtde=10, metodo=1, valorMenor=0, valorMaior=1, moda=0.5, media=5, variancia=1):
     numerosAleatorios = []
     if metodoJson[metodo] == 'uniforme':
         for _ in range(qtde):
@@ -49,16 +51,19 @@ def gerarNumerosRandomicos(qtde=10, metodo=1, valorMenor=0, valorMaior=1, moda=0
     if metodoJson[metodo] == 'exponencial':
         for _ in range(qtde):
             numerosAleatorios.append(
-                gerarRandomicoExponencial(valorMenor, valorMaior))
+                gerarRandomicoExponencial(valorMenor, media))
     if metodoJson[metodo] == 'natural':
         for _ in range(qtde):
             numerosAleatorios.append(
-                gerarRandomicoNatural(valorMenor, valorMaior))
+                gerarRandomicoNatural(media, variancia))
     return numerosAleatorios
-    
+
 numerosAleatorios = gerarNumerosRandomicos(50, 2, 1 , 100, 8)
 acc = 0
 for i in range(len(numerosAleatorios)):
     acc += numerosAleatorios[i]
     print('numero',i+1, ':', numerosAleatorios[i])
+with open('output.dst', 'w') as file:
+    for item in numerosAleatorios:
+        file.write(str(item) + '\n')
 print ('Valor medio : ', acc/len(numerosAleatorios))
