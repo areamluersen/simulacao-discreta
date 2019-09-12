@@ -1,6 +1,6 @@
-from src.entrada import selecaoMetodoDoUsuario, selecaoDeValoresDoUsuario, converteValoresDeEntrada, \
+from entrada import selecaoMetodoDoUsuario, selecaoDeValoresDoUsuario, converteValoresDeEntrada, \
     converteSelecaoMetodoDoUsuario, selecaoDeQuantidade, converteSelecaoDeQuantidade
-from src.numeros_randomicos import gerarNumerosRandomicos
+from numeros_randomicos import gerarNumerosRandomicos
 
 if __name__ == '__main__':
     metodoDeEntrada = selecaoMetodoDoUsuario()

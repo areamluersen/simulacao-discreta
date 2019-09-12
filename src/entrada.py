@@ -1,6 +1,6 @@
 import sys
 
-from src.numeros_randomicos import metodoJson
+from numeros_randomicos import metodoJson
 
 TEXTO_DE_ERRO_NA_ENTRADA = 'Erro na entrada.'
 
@@ -14,10 +14,10 @@ def selecaoMetodoDoUsuario():
 
 def fazEntradaSelecaoMetodoDoUsuario():
     print('Digite o metodo a ser executado:')
-    print(f'1) {metodoJson[1]}')
-    print(f'2) {metodoJson[2]}')
-    print(f'3) {metodoJson[3]}')
-    print(f'4) {metodoJson[4]}')
+    print('1)', metodoJson[1])
+    print('2)', metodoJson[2])
+    print('3)', metodoJson[3])
+    print('4)', metodoJson[4])
     entradaUsuario = input('entrada: ')
 
     return entradaUsuario
