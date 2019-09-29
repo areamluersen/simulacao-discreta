@@ -19,7 +19,7 @@ if __name__ == '__main__':
     for i in range(len(numerosAleatorios)):
         acc += numerosAleatorios[i]
         print('numero', i + 1, ':', numerosAleatorios[i])
-    with open('output.dst', 'w') as file:
+    with open('src/numeros_aleatorios/output.dst', 'w') as file:
         for item in numerosAleatorios:
             file.write(str(item) + '\n')
     print('Valor medio : ', acc / len(numerosAleatorios))
